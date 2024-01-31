@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>News Articles</title>
+</head>
+<body>
+    <h1>News Articles</h1>
+    <table>
+        <tr>
+            <th>Stock Name</th>
+            <th>Published At</th>
+            <th>URL</th>
+        </tr>
+        {% for article in articles %}
+        <tr>
+            <td>{{ article.stock_name }}</td>
+            <td>{{ article.published_at }}</td>
+            <td><a href="{{ article.url }}" target="_blank">{{ article.url }}</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
