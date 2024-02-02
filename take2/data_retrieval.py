@@ -3,6 +3,7 @@ import django
 import finnhub
 import requests
 from bs4 import BeautifulSoup
+import random
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'take2.settings')
 django.setup()
@@ -30,7 +31,13 @@ def find_main_content(soup):
 
 finnhub_client = finnhub.Client(api_key="cmoku39r01qjn6781hjgcmoku39r01qjn6781hk0")
 
-news_items = finnhub_client.company_news('AAPL', _from="2023-06-01", to="2023-10-10")
+# Predefined list of stock symbols, extend later on, Is predefined better?
+stock_symbols = ['AAPL', 'GOOGL', 'MSFT', 'AMZN', 'FB', 'TSLA', 'NFLX']
+
+# Select a random stock symbol from list
+random_stock_symbol = random.choice(stock_symbols)
+
+news_items = finnhub_client.company_news(random_stock_symbol, _from="2023-06-01", to="2023-10-10") #maybe change date range later to a year from current day??
 
 for item in news_items:
     stock_name = 'AAPL'
