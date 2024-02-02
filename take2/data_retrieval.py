@@ -4,6 +4,7 @@ import finnhub
 import requests
 from bs4 import BeautifulSoup
 import random
+from text_cleaning import clean_text
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'take2.settings')
 django.setup()
@@ -12,7 +13,7 @@ from newsapp.models import NewsArticle
 from django.utils import timezone
 import datetime
 
-# Define the flexible content finder function
+# Define the flexible content finder function, as it varies per page. Adjust if I have issues later.
 def find_main_content(soup):
     for selector in [
         'article',
@@ -31,7 +32,7 @@ def find_main_content(soup):
 
 finnhub_client = finnhub.Client(api_key="cmoku39r01qjn6781hjgcmoku39r01qjn6781hk0")
 
-# Predefined list of stock symbols, extend later on, Is predefined better?
+# Predefined list of stock symbols, extend later on, is predefined better? Popular stocks for now.
 stock_symbols = ['AAPL', 'GOOGL', 'MSFT', 'AMZN', 'FB', 'TSLA', 'NFLX']
 
 # Select a random stock symbol from list
@@ -47,23 +48,19 @@ for item in news_items:
     if unix_timestamp and url:
         published_at = timezone.make_aware(datetime.datetime.fromtimestamp(unix_timestamp), timezone.get_default_timezone())
         
-        # Initialize content to None
-        content = None
-
-        # Fetch and scrape the content of the URL
         response = requests.get(url)
         if response.status_code == 200:
             soup = BeautifulSoup(response.content, 'html.parser')
             main_content = find_main_content(soup)
             if main_content:
                 paragraphs = main_content.find_all('p')
-                content = ' '.join([paragraph.get_text().strip() for paragraph in paragraphs])
-                print(content)
+                raw_content = ' '.join([paragraph.get_text().strip() for paragraph in paragraphs])
+                cleaned_content = clean_text(raw_content)  # Use imported clean_text function
             else:
-                content = "Main content could not be found."
-
-        news_article = NewsArticle(stock_name=stock_name, published_at=published_at, url=url, content=content)
-        news_article.save()
+                cleaned_content = "Main content could not be found."
+            
+            news_article = NewsArticle(stock_name=random_stock_symbol, published_at=published_at, url=url, content=cleaned_content)
+            news_article.save()
     else:
         print(f"Skipping article with missing data: {item}")
 
