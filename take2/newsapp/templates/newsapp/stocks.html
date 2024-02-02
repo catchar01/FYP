@@ -1,0 +1,37 @@
+<!-- templates/newsapp/stocks.html -->
+
+{% extends "newsapp/base.html" %}  <!-- Assuming you have a base template with a navbar -->
+
+{% block content %}
+<div id="sidebar">
+    <!-- This will hold the list of stock names -->
+    {% for stock_name in stock_names %}
+    <button class="stock-button" onclick="loadArticles('{{ stock_name }}')">{{ stock_name }}</button>
+    {% endfor %}
+</div>
+<div id="main-content">
+    <!-- This will hold the article previews -->
+</div>
+
+<script>
+// JavaScript to load the articles for a selected stock
+function loadArticles(stockName) {
+    fetch(`/api/stock-articles?stock_name=${encodeURIComponent(stockName)}`)
+        .then(response => response.json())
+        .then(data => {
+            const articlesContainer = document.getElementById('main-content');
+            articlesContainer.innerHTML = '';  // Clear previous articles
+            data.forEach(article => {
+                const articleDiv = document.createElement('div');
+                articleDiv.className = 'article-preview';
+                articleDiv.innerHTML = `
+                    <h3>${article.title}</h3>
+                    <p>${article.summary}</p>
+                    <a href="${article.url}" target="_blank">Read more</a>
+                `;
+                articlesContainer.appendChild(articleDiv);
+            });
+        });
+}
+</script>
+{% endblock %}

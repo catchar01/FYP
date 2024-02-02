@@ -1,0 +1,24 @@
+{% load static %}  
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- ... -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="{% url 'index' %}">Home</a></li>
+            <li><a href="{% url 'stocks' %}">Stocks</a></li>
+            <!-- Add more navigation items here if needed -->
+        </ul>
+    </nav>
+    
+    <div id="content">
+        {% block content %}
+        <!-- Content overridden in child templates -->
+        {% endblock %}
+    </div>
+</body>
+</html>

@@ -3,6 +3,7 @@ from wordcloud import WordCloud
 from django.conf import settings
 from django.shortcuts import render
 from .models import NewsArticle
+from django.http import JsonResponse
 
 def generate_wordcloud():
     # Aggregate text data
@@ -25,3 +26,12 @@ def index(request):
     wordcloud_image_url = generate_wordcloud()
     context = {'wordcloud_image_url': wordcloud_image_url}
     return render(request, 'newsapp/index.html', context)
+
+def stocks(request):
+    stock_names = NewsArticle.objects.values_list('stock_name', flat=True).distinct()
+    return render(request, 'newsapp/stocks.html', {'stock_names': stock_names})
+
+def stock_articles(request):
+    stock_name = request.GET.get('stock_name')
+    articles = list(NewsArticle.objects.filter(stock_name=stock_name).values('url')[:2])
+    return JsonResponse(articles, safe=False)
