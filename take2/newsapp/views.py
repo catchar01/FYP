@@ -33,5 +33,5 @@ def stocks(request):
 
 def stock_articles(request):
     stock_name = request.GET.get('stock_name')
-    articles = list(NewsArticle.objects.filter(stock_name=stock_name).values('url')[:2])
+    articles = list(NewsArticle.objects.filter(stock_name=stock_name).values('title','url','published_at')[:2])
     return JsonResponse(articles, safe=False)

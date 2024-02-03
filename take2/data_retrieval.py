@@ -41,7 +41,8 @@ random_stock_symbol = random.choice(stock_symbols)
 news_items = finnhub_client.company_news(random_stock_symbol, _from="2023-06-01", to="2023-10-10") #maybe change date range later to a year from current day??
 
 for item in news_items:
-    stock_name = 'AAPL'
+    stock_name = random_stock_symbol
+    title = item.get('headline')
     unix_timestamp = item.get('datetime')
     url = item.get('url')
 
@@ -59,7 +60,7 @@ for item in news_items:
             else:
                 cleaned_content = "Main content could not be found."
             
-            news_article = NewsArticle(stock_name=random_stock_symbol, published_at=published_at, url=url, content=cleaned_content)
+            news_article = NewsArticle(stock_name=random_stock_symbol, title=title, published_at=published_at, url=url, content=cleaned_content)
             news_article.save()
     else:
         print(f"Skipping article with missing data: {item}")

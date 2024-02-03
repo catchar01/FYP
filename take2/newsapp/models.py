@@ -2,6 +2,7 @@ from django.db import models
 
 class NewsArticle(models.Model):
     stock_name = models.CharField(max_length=100)
+    title = models.TextField(null=True, blank=True)
     published_at = models.DateTimeField()
     url = models.URLField()
     content = models.TextField(null=True, blank=True)

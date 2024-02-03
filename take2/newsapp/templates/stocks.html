@@ -24,7 +24,7 @@
                     const articleDiv = document.createElement('div');
                     articleDiv.className = 'article-preview';
                     articleDiv.innerHTML = `
-                        <h3>Article ID: ${article.id}</h3>
+                        <h3>${article.title}</h3>
                         <a href="${article.url}" target="_blank">Read more</a>
                         <p>Published at: ${article.published_at}</p>
                     `;
