@@ -1,0 +1,75 @@
+/* static/css/styles.css */
+
+/* Reset margin and padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Style for the top horizontal navigation bar */
+nav {
+    background-color: #333;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem;
+    height: 50px; 
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+}
+
+nav ul li {
+    padding: 0 1rem;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+/* Style for the sidebar */
+#sidebar {
+    background-color: #f4f4f4;
+    height: 100vh; /* Full height of the viewport */
+    width: 200px; /* Width of the sidebar */
+    position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+    left: 0;
+    top: 50px;
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 20px;
+}
+
+#sidebar button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    text-align: left;
+    border: none;
+    background: none;
+    outline: none;
+    text-transform: uppercase;
+    transition: background 0.3s, color 0.3s;
+}
+
+#sidebar button:hover {
+    background-color: #ddd;
+}
+
+/* Style for the main content area */
+#main-content {
+    margin-left: 200px; /* Same as sidebar width */
+    margin-top: 50px; /* Same as nav height */
+    padding: 20px;
+}
+
+.article-preview {
+    border: 1px solid #ccc;
+    margin: 10px 0;
+    padding: 10px;
+    background-color: #fff;
+}

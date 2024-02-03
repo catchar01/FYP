@@ -1,4 +1,6 @@
-{% load static %}  
+<!-- templates/newsapp/base.html -->
+
+{% load static %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -11,14 +13,12 @@
         <ul>
             <li><a href="{% url 'index' %}">Home</a></li>
             <li><a href="{% url 'stocks' %}">Stocks</a></li>
-            <!-- Add more navigation items here if needed -->
         </ul>
     </nav>
-    
-    <div id="content">
-        {% block content %}
+
+    <!-- The main content area where child templates can inject their own content -->
+    {% block content %}
         <!-- Content overridden in child templates -->
-        {% endblock %}
-    </div>
+    {% endblock %}
 </body>
 </html>

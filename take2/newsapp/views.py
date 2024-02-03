@@ -12,8 +12,8 @@ def generate_wordcloud():
     # Generate word cloud image
     wordcloud = WordCloud(width=800, height=400, background_color='white').generate(all_content)
 
-    # Ensure the static/newsapp directory exists
-    static_dir = os.path.join(settings.BASE_DIR, 'newsapp', 'static', 'newsapp')
+    # Ensure the static directory exists
+    static_dir = os.path.join(settings.BASE_DIR, 'newsapp', 'static')
     os.makedirs(static_dir, exist_ok=True)
 
     # Path to save word cloud image within the app's static directory
@@ -25,11 +25,11 @@ def generate_wordcloud():
 def index(request):
     wordcloud_image_url = generate_wordcloud()
     context = {'wordcloud_image_url': wordcloud_image_url}
-    return render(request, 'newsapp/index.html', context)
+    return render(request, 'index.html', context)
 
 def stocks(request):
     stock_names = NewsArticle.objects.values_list('stock_name', flat=True).distinct()
-    return render(request, 'newsapp/stocks.html', {'stock_names': stock_names})
+    return render(request, 'stocks.html', {'stock_names': stock_names})
 
 def stock_articles(request):
     stock_name = request.GET.get('stock_name')
