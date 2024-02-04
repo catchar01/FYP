@@ -30,6 +30,8 @@
                 faveButton.onclick = function() { toggleFavourite(stockName, faveButton); };
                 articlesContainer.appendChild(faveButton);
 
+                checkIfFavourite(stockName, faveButton);
+
                 data.forEach(article => {
                     const articleDiv = document.createElement('div');
                     articleDiv.className = 'article-preview';
@@ -41,7 +43,7 @@
                     articlesContainer.appendChild(articleDiv);
                 });
 
-                toggleFavourite(stockName, faveButton);
+                <!--toggleFavourite(stockName, faveButton);-->
             });
     }
 
@@ -79,6 +81,14 @@
         }
         return cookieValue;
     }
+
+  function checkIfFavourite(stockName, button) {
+    fetch(`/is-favourite/?stock_name=${encodeURIComponent(stockName)}`)
+        .then(response => response.json())
+        .then(data => {
+            button.textContent = data.is_favourite ? 'Unfavourite' : 'Favourite';
+        });
+}  
 </script>
 
 {% endblock %}

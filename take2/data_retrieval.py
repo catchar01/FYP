@@ -13,7 +13,7 @@ from newsapp.models import NewsArticle
 from django.utils import timezone
 import datetime
 
-# Define the flexible content finder function, as it varies per page. Adjust if I have issues later.
+# Define flexible content finder function, as it varies per page. Adjust if I have issues later.
 def find_main_content(soup):
     for selector in [
         'article',

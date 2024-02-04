@@ -92,3 +92,9 @@ def toggle_favourite(request):
 @login_required
 def profile(request):
     return render(request, 'profile.html')
+
+@login_required
+def is_favourite(request):
+    stock_name = request.GET.get('stock_name')
+    is_favourite = FavouriteStock.objects.filter(user=request.user, stock_name=stock_name).exists()
+    return JsonResponse({'is_favourite': is_favourite})

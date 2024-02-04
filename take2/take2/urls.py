@@ -36,6 +36,7 @@ urlpatterns = [
     path('accounts/logout/', auth_views.LogoutView.as_view(next_page='/'), name='logout'),
     path('register/', views.register, name='register'),
     path('accounts/profile/', views.profile, name='profile'),
+    path('is-favourite/', views.is_favourite, name='is_favourite'),
 ]
 
 if settings.DEBUG:
