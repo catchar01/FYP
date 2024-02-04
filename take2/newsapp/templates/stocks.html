@@ -47,7 +47,7 @@
 
     <!-- JS for favouriting-->
     function toggleFavourite(stockName, button) {
-        fetch(`/toggle-favourite?stock_name=${encodeURIComponent(stockName)}`, {
+        fetch(`/toggle-favourite/?stock_name=${encodeURIComponent(stockName)}`, {
             method: 'POST',
             headers: {
                 'X-CSRFToken': getCookie('csrftoken'),

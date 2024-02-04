@@ -4,6 +4,8 @@ from django.conf import settings
 from django.shortcuts import render
 from .models import NewsArticle, FavouriteStock
 from django.http import JsonResponse
+import json
+from django.http import JsonResponse, HttpResponseBadRequest
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
@@ -67,21 +69,24 @@ def register(request):
 @require_POST
 @csrf_exempt  # Only for testing purposes. Remove this and handle CSRF properly in production
 def toggle_favourite(request):
-    stock_name = request.POST.get('stock_name')
+    try:
+        data = json.loads(request.body)
+        stock_name = data['stock_name']
+    except (KeyError, json.JSONDecodeError) as e:
+        return HttpResponseBadRequest('Invalid data')
+
     user = request.user
 
-    # Check if stock is already favourited
     favourite, created = FavouriteStock.objects.get_or_create(user=user, stock_name=stock_name)
-
     if not created:
-        # If the favourite already existed, delete it
+        # If favourite already exists, delete
         favourite.delete()
         is_favourite = False
     else:
-        # If the favourite was just created, it is now a favourite
+        # If favourite just created, it's now a favourite
         is_favourite = True
 
-    # Return JSON response indicating success and whether the stock is a favourite
+    # Return JSON response indicating success and whether stock is a favourite
     return JsonResponse({'success': True, 'is_favourite': is_favourite})
 
 @login_required
