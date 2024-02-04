@@ -35,7 +35,7 @@ finnhub_client = finnhub.Client(api_key="cmoku39r01qjn6781hjgcmoku39r01qjn6781hk
 # Predefined list of stock symbols, extend later on, is predefined better? Popular stocks for now.
 stock_symbols = ['AAPL', 'GOOGL', 'MSFT', 'AMZN', 'FB', 'TSLA', 'NFLX']
 
-# Select a random stock symbol from list
+# Select random stock symbol from list
 random_stock_symbol = random.choice(stock_symbols)
 
 news_items = finnhub_client.company_news(random_stock_symbol, _from="2023-06-01", to="2023-10-10") #maybe change date range later to a year from current day??

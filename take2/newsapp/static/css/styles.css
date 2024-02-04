@@ -1,5 +1,3 @@
-/* static/css/styles.css */
-
 /* Reset margin and padding */
 * {
     margin: 0;
@@ -60,7 +58,6 @@ nav ul li a {
     background-color: #ddd;
 }
 
-/* Style for the main content area */
 #main-content {
     margin-left: 200px; /* Same as sidebar width */
     margin-top: 50px; /* Same as nav height */

@@ -1,25 +1,35 @@
-{% extends "base.html" %}  <!-- Assuming you have a base template with a navbar -->
+{% extends "base.html" %}
 {% load static %}
 {% block content %}
 <div id="sidebar">
-    <!-- This will hold the list of stock names -->
     {% for stock_name in stock_names %}
-    <button class="stock-button" onclick="loadArticles('{{ stock_name }}')">{{ stock_name }}</button>
+        <button class="stock-button" onclick="loadArticles('{{ stock_name }}')">
+            {{ stock_name }}
+        </button>
+
+    
     {% endfor %}
 </div>
 <div id="main-content">
-    <!-- This will hold the article previews -->
+    
 </div>
 
 <script>
 
-    // JavaScript to load the articles for a selected stock
+    // JS to load the articles for a selected stock
     function loadArticles(stockName) {
         fetch(`/api/stock-articles?stock_name=${encodeURIComponent(stockName)}`)
             .then(response => response.json())
             .then(data => {
                 const articlesContainer = document.getElementById('main-content');
                 articlesContainer.innerHTML = '';  // Clear previous articles
+
+                <!-- adding favourite button-->
+                const faveButton = document.createElement('button');
+                faveButton.textContent = 'Favourite';
+                faveButton.onclick = function() { toggleFavourite(stockName, faveButton); };
+                articlesContainer.appendChild(faveButton);
+
                 data.forEach(article => {
                     const articleDiv = document.createElement('div');
                     articleDiv.className = 'article-preview';
@@ -30,9 +40,45 @@
                     `;
                     articlesContainer.appendChild(articleDiv);
                 });
+
+                toggleFavourite(stockName, faveButton);
             });
     }
 
+    <!-- JS for favouriting-->
+    function toggleFavourite(stockName, button) {
+        fetch(`/toggle-favourite?stock_name=${encodeURIComponent(stockName)}`, {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': getCookie('csrftoken'),
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ 'stock_name': stockName }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.is_favourite) {
+                button.textContent = 'Unfavourite';
+            } else {
+                button.textContent = 'Favourite';
+            }
+        });
+    }
+    
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
 </script>
 
 {% endblock %}
