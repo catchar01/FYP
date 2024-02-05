@@ -6,8 +6,15 @@
         <button class="stock-button" onclick="loadArticles('{{ stock_name }}')">
             {{ stock_name }}
         </button>
+    {% endfor %}
 
-    
+    <hr>
+    <h3>Favourites</h3>
+
+    {% for stock_name in favourite_stocks %}
+        <button class="stock-button favourite" onclick="loadArticles('{{ stock_name }}')">
+            {{ stock_name }}
+        </button>
     {% endfor %}
 </div>
 <div id="main-content">
