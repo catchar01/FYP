@@ -1,32 +1,11 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
-<!DOCTYPE html>
-<html>
-    
-<head>
-    <title>News Articles</title>
-</head>
-<body>
-    <div>
-        <h1>Word Cloud</h1>
-        <img src="{% static 'wordcloud.png' %}" alt="Word Cloud">
-    </div>
-    <h1>News Articles</h1>
-    <table>
-        <tr>
-            <th>Stock Name</th>
-            <th>Published At</th>
-            <th>Content</th>
-        </tr>
-        {% for article in articles %}
-        <tr>
-            <td>{{ article.stock_name }}</td>
-            <td>{{ article.published_at }}</td>
-            <td>{{ article.content }}</a></td>
-        </tr>
-        {% endfor %}
-    </table>
-</body>
-</html>
+<div>
+    <h1>Word Cloud</h1>
+    <img src="{% static 'wordcloud.png' %}" alt="Word Cloud">
+</div>
+<div class="container mt-4">
+    <!--empty for now-->
+</div>
 {% endblock %}

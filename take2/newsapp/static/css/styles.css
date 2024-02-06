@@ -1,3 +1,5 @@
+
+
 /* Reset margin and padding */
 * {
     margin: 0;
@@ -70,3 +72,34 @@ nav ul li a {
     padding: 10px;
     background-color: #fff;
 }
+
+
+#main-content h2 {
+    display: inline; /* Make the title inline with the button */
+    margin-right: 10px; /* Add some space between the title and button */
+}
+
+#main-content button {
+    vertical-align: top; /* Align the button with the title */
+    margin-top: 0; /* Remove any top margin from the button */
+}
+
+/* Adjustments for the sidebar titles */
+#sidebar h3 {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+.stock-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background-color: #f9f9f9; /* Background color for the header */
+}
+
+.stock-header h2 {
+    margin: 0; /* Remove default margin */
+    display: inline;
+}
+

@@ -1,27 +1,45 @@
 {% load static %}
 
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <!-- ... -->
+    <link href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.2/dist/quartz/bootstrap.min.css" rel="stylesheet">
+    <!--https://bootswatch.com/quartz/-->
     <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
 </head>
 <body>
-    <nav>
-        <ul>
-            <li><a href="{% url 'index' %}">Home</a></li>
-            <li><a href="{% url 'stocks' %}">Stocks</a></li>
+    <!-- Start of Bootstrap navbar -->
+    <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'index' %}">FYP</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarColor02">
+          <ul class="navbar-nav me-auto">
+            <li class="nav-item">
+              <a class="nav-link active" href="{% url 'index' %}">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'stocks' %}">Stocks</a>
+            </li>
             {% if user.is_authenticated %}
-                <li><a href="{% url 'logout' %}?next=/">Logout</a></li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'logout' %}?next=/">Logout</a>
+            </li>
             {% else %}
-                <li><a href="{% url 'login' %}">Login</a></li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'login' %}">Login</a>
+            </li>
             {% endif %}
-        </ul>
+          </ul>
+        </div>
+      </div>
     </nav>
-
-    <!-- Main content area where child templates can inject own content -->
     {% block content %}
-        <!-- Content overridden in child templates -->
+
     {% endblock %}
 </body>
 </html>
