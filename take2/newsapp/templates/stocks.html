@@ -1,23 +1,34 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
+<!--add company profile option from finnhub-->
+<div class="d-flex" id="sidebar">
+    <nav class="flex-column navbar bg-light" data-bs-theme="light" style="min-width: 250px;">
+      <div class="container-fluid">
+        <div id="navbarStocks">
+          <ul class="navbar-nav flex-column me-auto">
+            <li class="nav-item">
+              <h3 class="nav-link">Stocks</h3>
+              {% for stock_name in stock_names %}
+                <a class="nav-link" href="javascript:void(0);" onclick="loadArticles('{{ stock_name }}')">
+                  {{ stock_name }}
+                </a>
+              {% endfor %}
+            </li>
+            <li class="nav-item">
+              <h3 class="nav-link">Favourites</h3>
+              {% for stock_name in favourite_stocks %}
+                <a class="nav-link favourite" href="javascript:void(0);" onclick="loadArticles('{{ stock_name }}')">
+                  {{ stock_name }}
+                </a>
+              {% endfor %}
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
 
-<div id="sidebar">
-    <h3>Stocks</h3>
-    {% for stock_name in stock_names %}
-        <button class="stock-button" onclick="loadArticles('{{ stock_name }}')">
-            {{ stock_name }}
-        </button>
-    {% endfor %}
-
-    <hr>
-    <h3>Favourites</h3>
-    {% for stock_name in favourite_stocks %}
-        <button class="stock-button favourite" onclick="loadArticles('{{ stock_name }}')">
-            {{ stock_name }}
-        </button>
-    {% endfor %}
-</div>
 <div id="main-content">
     
 </div>

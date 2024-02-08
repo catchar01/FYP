@@ -32,8 +32,8 @@ def find_main_content(soup):
 
 finnhub_client = finnhub.Client(api_key="cmoku39r01qjn6781hjgcmoku39r01qjn6781hk0")
 
-# Predefined list of stock symbols, extend later on, is predefined better? Popular stocks for now.
-stock_symbols = ['AAPL', 'GOOGL', 'MSFT', 'AMZN', 'FB', 'TSLA', 'NFLX']
+US_stock_symbols = finnhub_client.stock_symbols('US')
+stock_symbols = [stock['symbol'] for stock in US_stock_symbols]
 
 # Select random stock symbol from list
 random_stock_symbol = random.choice(stock_symbols)

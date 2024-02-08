@@ -10,7 +10,6 @@
 /* Style for the top horizontal navigation bar */
 nav {
     background-color: #333;
-    color: white;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -28,15 +27,12 @@ nav ul li {
 }
 
 nav ul li a {
-    color: white;
     text-decoration: none;
 }
 
-/* Style for the sidebar */
 #sidebar {
-    background-color: #f4f4f4;
-    height: 100vh; /* Full height of the viewport */
-    width: 200px; /* Width of the sidebar */
+    height: 100vh;
+    width: 200px; 
     position: fixed; /* Fixed Sidebar (stay in place on scroll) */
     left: 0;
     top: 50px;
@@ -56,10 +52,6 @@ nav ul li a {
     transition: background 0.3s, color 0.3s;
 }
 
-#sidebar button:hover {
-    background-color: #ddd;
-}
-
 #main-content {
     margin-left: 200px; /* Same as sidebar width */
     margin-top: 50px; /* Same as nav height */
@@ -67,24 +59,21 @@ nav ul li a {
 }
 
 .article-preview {
-    border: 1px solid #ccc;
     margin: 10px 0;
     padding: 10px;
-    background-color: #fff;
 }
 
 
 #main-content h2 {
     display: inline; /* Make the title inline with the button */
-    margin-right: 10px; /* Add some space between the title and button */
+    margin-right: 10px;
 }
 
 #main-content button {
     vertical-align: top; /* Align the button with the title */
-    margin-top: 0; /* Remove any top margin from the button */
+    margin-top: 0; 
 }
 
-/* Adjustments for the sidebar titles */
 #sidebar h3 {
     margin-top: 0;
     padding-top: 0;
@@ -95,11 +84,37 @@ nav ul li a {
     align-items: center;
     justify-content: space-between;
     padding: 10px 20px;
-    background-color: #f9f9f9; /* Background color for the header */
 }
 
 .stock-header h2 {
-    margin: 0; /* Remove default margin */
+    margin: 0;
     display: inline;
 }
 
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+.card{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-body{
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card img{
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.navbar {
+    min-height: 100vh;
+}

@@ -1,11 +1,54 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
-<div>
-    <h1>Word Cloud</h1>
-    <img src="{% static 'wordcloud.png' %}" alt="Word Cloud">
-</div>
+
 <div class="container mt-4">
-    <!--empty for now-->
+    <div class="row">
+        <!-- Top row cards -->
+        <div class="col-md-6">
+            <div class="card h-100">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Word cloud</h5>
+                    <img class="img-fluid" src="{% static 'wordcloud.png' %}" alt="Word Cloud">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card h-100">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Latest news</h5>
+                    <p class="card-text">Market news on finnhub</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-4"> <!-- Add some top margin for spacing between rows -->
+        <!-- Bottom row cards -->
+        <div class="col-md-4">
+            <div class="card h-100">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Fastest growing stocks</h5>
+                    <p class="card-text">Some text inside card 4.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Plumetting stocks</h5>
+                    <p class="card-text">Some text inside card 5.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">Favourite stocks</h5>
+                    <p class="card-text">Some text inside card 6.</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
 {% endblock %}
