@@ -8,8 +8,7 @@
 }
 
 /* Style for the top horizontal navigation bar */
-nav {
-    background-color: #333;
+.navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -23,7 +22,7 @@ nav ul {
 }
 
 nav ul li {
-    padding: 0 1rem;
+    padding: 1rem;
 }
 
 nav ul li a {
@@ -37,7 +36,6 @@ nav ul li a {
     left: 0;
     top: 50px;
     overflow-x: hidden; /* Disable horizontal scroll */
-    padding-top: 20px;
 }
 
 #sidebar button {
@@ -54,15 +52,13 @@ nav ul li a {
 
 #main-content {
     margin-left: 200px; /* Same as sidebar width */
-    margin-top: 50px; /* Same as nav height */
-    padding: 20px;
 }
 
 .article-preview {
     margin: 10px 0;
     padding: 10px;
+    border-style: solid;
 }
-
 
 #main-content h2 {
     display: inline; /* Make the title inline with the button */
@@ -83,7 +79,7 @@ nav ul li a {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 10px 20px;
+    padding: 10px;
 }
 
 .stock-header h2 {
@@ -113,8 +109,4 @@ html, body {
     width: 100%;
     height: auto;
     object-fit: cover;
-}
-
-.navbar {
-    min-height: 100vh;
 }
